@@ -67,6 +67,35 @@
     display: block;
 }
 
+.gh-card-link-image {
+    display: flex;
+    gap: 2.4rem;
+    align-items: stretch;
+}
+
+.gh-card-media {
+    position: relative;
+    flex: 0 0 12rem;
+    width: 12rem;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.2rem;
+    background-color: var(--color-light-gray);
+}
+
+.gh-card-thumbnail {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gh-card-content {
+    flex: 1 1 auto;
+}
+
 .gh-card-link:hover {
     opacity: 1;
 }
@@ -570,6 +599,15 @@
 @media (max-width: 767px) {
     .gh-latest {
         margin-bottom: 8rem;
+    }
+
+    .gh-card-link-image {
+        flex-direction: column;
+    }
+
+    .gh-card-media {
+        width: 100%;
+        max-width: none;
     }
 
     .gh-wrapper {
