@@ -1,0 +1,67 @@
+{{!< default}}
+
+{{#post}}
+
+<main id="gh-main" class="gh-main">
+    <article class="gh-article {{post_class}}">
+
+        {{#match @page.show_title_and_feature_image}}
+            <header class="gh-article-header gh-canvas">
+                <h1 class="gh-article-title">{{title}}</h1>
+
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt">{{custom_excerpt}}</p>
+                {{/if}}
+
+                {{> "feature-image"}}
+            </header>
+        {{/match}}
+
+        {{#if content}}
+            <div class="gh-content gh-canvas">
+                {{content}}
+            </div>
+        {{/if}}
+
+        <section class="gh-author-directory gh-canvas" aria-labelledby="authors-heading">
+            <h2 id="authors-heading" class="gh-author-directory-title">{{t "Authors"}}</h2>
+
+            {{#get "authors" limit="100" include="count.posts"}}
+                {{#if authors}}
+                    <ul class="gh-author-list">
+                        {{#foreach authors}}
+                            <li class="gh-author-card">
+                                <a class="gh-author-card-link" href="{{url}}">
+                                    <span class="gh-author-avatar">
+                                        {{#if profile_image}}
+                                            <img src="{{profile_image}}" alt="{{name}}" loading="lazy">
+                                        {{else}}
+                                            <span class="gh-author-avatar-fallback" aria-hidden="true">
+                                                {{> "icons/avatar"}}
+                                            </span>
+                                        {{/if}}
+                                    </span>
+
+                                    <div class="gh-author-card-body">
+                                        <h3 class="gh-author-card-name">{{name}}</h3>
+
+                                        {{#if bio}}
+                                            <p class="gh-author-card-bio">{{bio}}</p>
+                                        {{/if}}
+
+                                        <span class="gh-author-card-cta">{{t "View profile"}}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        {{/foreach}}
+                    </ul>
+                {{else}}
+                    <p class="gh-author-directory-empty">{{t "No authors found."}}</p>
+                {{/if}}
+            {{/get}}
+        </section>
+
+    </article>
+</main>
+
+{{/post}}
