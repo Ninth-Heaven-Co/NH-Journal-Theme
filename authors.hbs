@@ -1,0 +1,37 @@
+{{!< default}}
+
+<main id="gh-main" class="gh-main gh-canvas">
+    <section class="authors-index fade-in">
+        <h1>Contributors</h1>
+
+        {{#get "authors" include="count.posts" limit="all" order="name asc" as |author_list|}}
+            {{#if author_list}}
+                <div class="authors-grid">
+                    {{#foreach author_list}}
+                        <a href="{{url}}" class="author-card">
+                            {{#if profile_image}}
+                                <img src="{{img_url profile_image size="m"}}" alt="{{name}}">
+                            {{else}}
+                                <span class="author-card-avatar" aria-hidden="true">{{> icons/avatar}}</span>
+                            {{/if}}
+
+                            <h2>{{name}}</h2>
+
+                            {{#if bio}}
+                                <p>{{bio}}</p>
+                            {{else}}
+                                {{#if location}}
+                                    <p>{{location}}</p>
+                                {{else}}
+                                    <p>{{plural count.posts empty="No published work yet" singular="% publication" plural="% publications"}}</p>
+                                {{/if}}
+                            {{/if}}
+                        </a>
+                    {{/foreach}}
+                </div>
+            {{else}}
+                <p>No contributors found.</p>
+            {{/if}}
+        {{/get}}
+    </section>
+</main>

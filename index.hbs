@@ -4,43 +4,40 @@
     <div class="gh-inner">
         {{^is "paged"}}
             {{#foreach posts limit="1"}}
-                <article class="gh-latest gh-card {{post_class}}">
-                    <a class="gh-card-link" href="{{url}}">
-                        <header class="gh-card-header">
-                            <div class="gh-article-meta">
-                                <span class="gh-card-date">Latest — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time></span>
+                <section class="gh-hero fade-in {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}">
+                    <div class="gh-hero-inner">
+                        <div class="gh-hero-text">
+                            <span class="gh-hero-meta">Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}</span>
+
+                            <h1 class="gh-hero-title"><a href="{{url}}">{{title}}</a></h1>
+
+                            <p class="gh-hero-excerpt">{{excerpt words="40"}}</p>
+                        </div>
+
+                        {{#if feature_image}}
+                            <div class="gh-hero-image">
+                                <a href="{{url}}" aria-label="{{title}}">
+                                    <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                                </a>
                             </div>
-                            <h2 class="gh-article-title gh-card-title">{{title}}</h2>
-                        </header>
-
-                        <p class="gh-article-excerpt">{{excerpt}}</p>
-
-                        <footer class="gh-card-meta">
-                            <span class="gh-card-duration">{{reading_time}}</span>
-                            {{#if @site.comments_enabled}}
-                                {{comment_count class="gh-card-comments"}}
-                            {{/if}}
-                            {{^has visibility="public"}}
-                                {{> icons/star}}
-                            {{/has}}
-                        </footer>
-                    </a>
-                </article>
+                        {{/if}}
+                    </div>
+                </section>
             {{/foreach}}
         {{/is}}
 
         <div class="gh-wrapper">
             <section class="gh-section">
-                <h2 class="gh-section-title">More issues</h2>
+                <h2 class="gh-section-title">More Issues</h2>
 
-                <div class="gh-feed">
+                <div class="gh-feed post-list">
                     {{^is "paged"}}
                         {{#foreach posts from="2"}}
-                            {{> loop}}
+                            {{> "loop-horizontal"}}
                         {{/foreach}}
                     {{else}}
                         {{#foreach posts}}
-                            {{> loop}}
+                            {{> "loop-horizontal"}}
                         {{/foreach}}
                     {{/is}}
                 </div>
@@ -101,7 +98,7 @@
 
                             <div class="gh-featured gh-feed">
                                 {{#foreach featured}}
-                                    {{> loop}}
+                                    {{> "loop-horizontal-no-badge"}}
                                 {{/foreach}}
                             </div>
                         </section>
