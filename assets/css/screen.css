@@ -266,6 +266,7 @@ body {
     border-radius: 0.6rem;
     overflow: hidden;
     background-color: var(--color-light-gray);
+    aspect-ratio: 16 / 9;
 }
 
 .gh-card-image img {
