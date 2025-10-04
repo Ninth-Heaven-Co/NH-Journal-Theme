@@ -1,0 +1,36 @@
+<article class="post-card loop-horizontal fade-in {{post_class}}">
+    {{#if feature_image}}
+        <a href="{{url}}" class="post-card-image-link">
+            <img
+                class="post-card-image"
+                src="{{img_url feature_image size="m"}}"
+                srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w"
+                sizes="(min-width: 1280px) 240px, (min-width: 768px) 220px, 100vw"
+                alt="{{title}}"
+                loading="lazy"
+            >
+        </a>
+    {{else}}
+        <div class="post-card-image post-card-image--placeholder" aria-hidden="true"></div>
+    {{/if}}
+
+    <div class="post-card-content">
+        {{#if primary_tag}}
+            <span class="post-card-tag">{{primary_tag.name}}</span>
+        {{/if}}
+
+        <h2 class="post-card-title"><a href="{{url}}">{{title}}</a></h2>
+
+        {{#if excerpt}}
+            <p class="post-card-excerpt">{{excerpt words="30"}}</p>
+        {{/if}}
+
+        <div class="post-card-meta">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#if reading_time}}
+                <span aria-hidden="true"> · </span>
+                <span>{{reading_time}}</span>
+            {{/if}}
+        </div>
+    </div>
+</article>
