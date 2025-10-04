@@ -44,17 +44,27 @@
         "custom": {
             "navigation_layout": {
                 "type": "select",
-                "options": ["Logo on the left", "Logo in the middle", "Stacked"],
+                "options": [
+                    "Logo on the left",
+                    "Logo in the middle",
+                    "Stacked"
+                ],
                 "default": "Stacked"
             },
             "title_font": {
                 "type": "select",
-                "options": ["Modern sans-serif", "Elegant serif"],
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
                 "default": "Modern sans-serif"
             },
             "body_font": {
                 "type": "select",
-                "options": ["Modern sans-serif", "Elegant serif"],
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
                 "default": "Modern sans-serif"
             }
         }
@@ -79,6 +89,7 @@
         "ordered-read-streams": "2.0.0",
         "postcss": "8.5.6",
         "postcss-easy-import": "4.0.0",
-        "pump": "3.0.3"
+        "pump": "3.0.3",
+        "tailwindcss": "3.4.12"
     }
 }

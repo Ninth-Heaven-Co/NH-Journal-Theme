@@ -1,0 +1,21 @@
+{{!< default}}
+
+<main id="gh-main" class="gh-main gh-canvas">
+    <section class="grid gap-12 py-20 sm:grid-cols-2 md:grid-cols-3">
+        {{#foreach authors}}
+            <a href="{{url}}" class="group flex flex-col items-center text-center transition">
+                {{#if profile_image}}
+                    <img src="{{profile_image}}" alt="{{name}}" class="mb-4 h-24 w-24 rounded-full object-cover">
+                {{else}}
+                    <span class="mb-4 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gray-light text-gray-dark">
+                        {{> icons/avatar}}
+                    </span>
+                {{/if}}
+                <h3 class="font-serif text-xl font-semibold text-[var(--color-primary-text)] transition group-hover:opacity-80">{{name}}</h3>
+                {{#if bio}}
+                    <p class="mt-1 text-sm text-neutral-600">{{bio}}</p>
+                {{/if}}
+            </a>
+        {{/foreach}}
+    </section>
+</main>
