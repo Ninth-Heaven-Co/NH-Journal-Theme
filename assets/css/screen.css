@@ -180,6 +180,10 @@
     height: 100%;
 }
 
+.gh-card {
+    height: 100%;
+}
+
 .gh-card + .gh-card {
     margin-top: 0;
 }
