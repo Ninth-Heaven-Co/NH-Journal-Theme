@@ -191,6 +191,10 @@
     height: auto;
 }
 
+.gh-card {
+    height: 100%;
+}
+
 .gh-card + .gh-card {
     margin-top: 0;
 }
@@ -219,6 +223,7 @@
     border-radius: 0.6rem;
     overflow: hidden;
     background-color: var(--color-light-gray);
+    aspect-ratio: 16 / 9;
 }
 
 .gh-card-image img {
