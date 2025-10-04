@@ -1,7 +1,7 @@
 <article class="gh-card {{post_class}}">
     <a class="gh-card-link{{#if feature_image}} gh-card-link-image{{/if}}" href="{{url}}">
         {{#if feature_image}}
-            <figure class="gh-card-image">
+            <figure class="gh-card-image gh-card-image-cover">
                 <img
                     src="{{img_url feature_image size="m"}}"
                     srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w"
@@ -21,7 +21,7 @@
                 <h2 class="gh-card-title">{{title}}</h2>
             </header>
 
-            <div class="gh-card-excerpt">{{excerpt}}</div>
+            <div class="gh-card-excerpt">{{excerpt words="30"}}</div>
 
             <footer class="gh-card-meta">
                 <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
