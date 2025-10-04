@@ -4,40 +4,20 @@
     <div class="gh-inner">
         {{^is "paged"}}
             {{#foreach posts limit="1"}}
-                <article class="gh-hero gh-card {{post_class}}">
-                    <a class="gh-card-link" href="{{url}}">
-                        {{#if feature_image}}
-                            <figure class="gh-hero-media">
-                                <img
-                                    class="gh-latest-image"
-                                    src="{{img_url feature_image size="xl"}}"
-                                    srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w, {{img_url feature_image size="xl"}} 1200w"
-                                    sizes="(min-width: 992px) 960px, 100vw"
-                                    alt="{{title}}"
-                                    loading="lazy"
-                                >
-                            </figure>
-                        {{/if}}
-
+                <article class="gh-hero {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}"{{#if feature_image}} style="background-image: url({{img_url feature_image size="xxl"}});"{{/if}}>
+                    <a class="gh-hero-link" href="{{url}}">
                         <div class="gh-hero-content">
-                            <header class="gh-card-header">
-                                <div class="gh-article-meta">
-                                    <span class="gh-card-date">Latest — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time></span>
-                                </div>
-                                <h2 class="gh-article-title gh-card-title">{{title}}</h2>
-                            </header>
-
-                            <p class="gh-article-excerpt">{{excerpt}}</p>
-
-                            <footer class="gh-card-meta">
-                                <span class="gh-card-duration">{{reading_time}}</span>
-                                {{#if @site.comments_enabled}}
-                                    {{comment_count class="gh-card-comments"}}
+                            <div class="gh-hero-meta">
+                                <span class="gh-hero-label">Latest Issue</span>
+                                <time class="gh-hero-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                                {{#if reading_time}}
+                                    <span class="gh-hero-duration">{{reading_time}}</span>
                                 {{/if}}
-                                {{^has visibility="public"}}
-                                    {{> icons/star}}
-                                {{/has}}
-                            </footer>
+                            </div>
+
+                            <h1 class="gh-hero-title">{{title}}</h1>
+
+                            <p class="gh-hero-excerpt">{{excerpt words="36"}}</p>
                         </div>
                     </a>
                 </article>
@@ -48,7 +28,7 @@
             <section class="gh-section">
                 <h2 class="gh-section-title">More Issues</h2>
 
-                <div class="gh-feed gh-feed-grid">
+                <div class="gh-feed gh-feed-list">
                     {{^is "paged"}}
                         {{#foreach posts from="2"}}
                             {{> loop}}
