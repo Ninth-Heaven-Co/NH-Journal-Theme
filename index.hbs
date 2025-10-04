@@ -4,25 +4,25 @@
     <div class="gh-inner">
         {{^is "paged"}}
             {{#foreach posts limit="1"}}
-                <article class="gh-hero {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}">
-                    <a class="gh-hero-link" href="{{url}}">
-                        {{#if feature_image}}
-                            <div class="gh-hero-image">
+                <section class="gh-hero fade-in {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}">
+                    <div class="gh-hero-text">
+                        <span class="gh-hero-meta">
+                            Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}
+                        </span>
+
+                        <h1 class="gh-hero-title"><a href="{{url}}">{{title}}</a></h1>
+
+                        <p class="gh-hero-excerpt">{{excerpt words="30"}}</p>
+                    </div>
+
+                    {{#if feature_image}}
+                        <div class="gh-hero-image">
+                            <a href="{{url}}" aria-label="{{title}}">
                                 <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
-                            </div>
-                        {{/if}}
-
-                        <div class="gh-hero-text">
-                            <span class="gh-hero-meta">
-                                Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}
-                            </span>
-
-                            <h1 class="gh-hero-title">{{title}}</h1>
-
-                            <p class="gh-hero-excerpt">{{excerpt words="30"}}</p>
+                            </a>
                         </div>
-                    </a>
-                </article>
+                    {{/if}}
+                </section>
             {{/foreach}}
         {{/is}}
 
@@ -33,11 +33,11 @@
                 <div class="gh-feed gh-feed-list">
                     {{^is "paged"}}
                         {{#foreach posts from="2"}}
-                            {{> loop}}
+                            {{> "loop-horizontal"}}
                         {{/foreach}}
                     {{else}}
                         {{#foreach posts}}
-                            {{> loop}}
+                            {{> "loop-horizontal"}}
                         {{/foreach}}
                     {{/is}}
                 </div>
@@ -98,7 +98,7 @@
 
                             <div class="gh-featured gh-feed">
                                 {{#foreach featured}}
-                                    {{> loop}}
+                                    {{> "loop-horizontal-no-badge"}}
                                 {{/foreach}}
                             </div>
                         </section>
