@@ -4,25 +4,28 @@
     <div class="gh-inner">
         {{^is "paged"}}
             {{#foreach posts limit="1"}}
-                <article class="gh-hero {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}">
-                    <a class="gh-hero-link" href="{{url}}">
+                <section class="mb-24 overflow-hidden rounded-sm bg-[#f7f4f1] shadow-[0_20px_40px_rgba(12,10,8,0.05)]">
+                    <div class="grid min-h-[70vh] grid-cols-1 md:grid-cols-2">
+                        <div class="order-1 flex flex-col justify-center gap-6 bg-white px-8 py-16 text-[var(--color-primary-text)] md:px-12 {{#unless feature_image}}md:col-span-2{{/unless}}">
+                            <div class="uppercase text-xs tracking-[0.16em] text-neutral-500">
+                                Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}
+                            </div>
+                            <h1 class="font-serif text-5xl font-semibold leading-tight md:text-6xl">
+                                <a href="{{url}}" class="hover:opacity-80">{{title}}</a>
+                            </h1>
+                            <p class="text-base leading-relaxed text-neutral-700 md:text-lg">{{excerpt words="30"}}</p>
+                            <a href="{{url}}" class="inline-flex items-center text-xs uppercase tracking-[0.2em] text-neutral-600 transition-colors hover:text-[var(--color-primary-text)]">Continue reading</a>
+                        </div>
                         {{#if feature_image}}
-                            <div class="gh-hero-image">
-                                <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                            <div class="relative order-2 h-full min-h-[260px]">
+                                <a href="{{url}}" class="block h-full w-full">
+                                    <img src="{{img_url feature_image size="xl"}}" alt="{{title}}" class="h-full w-full object-cover"/>
+                                    <span class="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent"></span>
+                                </a>
                             </div>
                         {{/if}}
-
-                        <div class="gh-hero-text">
-                            <span class="gh-hero-meta">
-                                Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}
-                            </span>
-
-                            <h1 class="gh-hero-title">{{title}}</h1>
-
-                            <p class="gh-hero-excerpt">{{excerpt words="30"}}</p>
-                        </div>
-                    </a>
-                </article>
+                    </div>
+                </section>
             {{/foreach}}
         {{/is}}
 
@@ -30,7 +33,7 @@
             <section class="gh-section">
                 <h2 class="gh-section-title">More Issues</h2>
 
-                <div class="gh-feed gh-feed-list">
+                <div class="mt-16 space-y-12">
                     {{^is "paged"}}
                         {{#foreach posts from="2"}}
                             {{> loop}}

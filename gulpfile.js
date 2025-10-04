@@ -15,6 +15,7 @@ const zip = require('gulp-zip');
 const easyimport = require('postcss-easy-import');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const tailwindcss = require('tailwindcss');
 
 function serve(done) {
     livereload.listen();
@@ -42,6 +43,7 @@ function css(done) {
         src('assets/css/screen.css', {sourcemaps: true}),
         postcss([
             easyimport,
+            tailwindcss(),
             autoprefixer(),
             cssnano()
         ]),

@@ -2,67 +2,69 @@
 
 <main id="gh-main" class="gh-main gh-canvas">
     {{#author}}
-        <section class="gh-pagehead">
-            {{#if profile_image}}
-                <img class="gh-author-image gh-pagehead-image" src="{{profile_image}}" alt="{{name}}">
-            {{else}}
-                <span class="gh-author-icon">{{> icons/avatar}}</span>
-            {{/if}}
-
-            <header class="gh-pagehead-content">
-                <h1 class="gh-author-name gh-pagehead-title">{{name}}</h1>
-
-                {{#if bio}}
-                    <div class="gh-author-bio gh-pagehead-description">{{bio}}</div>
+        <section class="grid gap-12 py-16 md:grid-cols-[250px_1fr]">
+            <div class="flex flex-col items-start text-[var(--color-primary-text)]">
+                {{#if profile_image}}
+                    <img class="mb-6 h-24 w-24 rounded-full object-cover" src="{{profile_image}}" alt="{{name}}">
+                {{else}}
+                    <span class="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gray-light text-gray-dark">
+                        {{> icons/avatar}}
+                    </span>
                 {{/if}}
 
-                <div class="gh-author-meta">
+                <h1 class="mb-2 font-serif text-4xl font-semibold">{{name}}</h1>
+
+                {{#if bio}}
+                    <p class="mb-4 text-base leading-relaxed text-neutral-700">{{bio}}</p>
+                {{/if}}
+
+                <div class="flex flex-wrap items-center gap-3 text-sm text-neutral-500">
                     {{#if location}}
-                        <span class="gh-author-location">📍 {{location}}</span>
+                        <span>{{location}}</span>
                     {{/if}}
                     {{#if website}}
-                        <a class="gh-author-website" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                        <a class="underline transition hover:text-[var(--color-primary-text)]" href="{{website}}" target="_blank" rel="noopener">Website</a>
                     {{/if}}
-                    <div class="gh-author-social">
-                        {{#if twitter}}
-                            <a class="gh-author-twitter" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">{{> icons/twitter}}</a>
-                        {{/if}}
-                        {{#if facebook}}
-                            <a class="gh-author-facebook" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">{{> icons/facebook}}</a>
-                        {{/if}}
-                        {{#if linkedin}}
-                            <a class="gh-author-linkedin" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">{{> icons/linkedin}}</a>
-                        {{/if}}
-                        {{#if bluesky}}
-                            <a class="gh-author-bluesky" href="{{social_url type="bluesky"}}" target="_blank" rel="noopener">{{> icons/bluesky}}</a>
-                        {{/if}}
-                        {{#if threads}}
-                            <a class="gh-author-threads" href="{{social_url type="threads"}}" target="_blank" rel="noopener">{{> icons/threads}}</a>
-                        {{/if}}
-                        {{#if mastodon}}
-                            <a class="gh-author-mastodon" href="{{social_url type="mastodon"}}" target="_blank" rel="noopener">{{> icons/mastodon}}</a>
-                        {{/if}}
-                        {{#if tiktok}}
-                            <a class="gh-author-tiktok" href="{{social_url type="tiktok"}}" target="_blank" rel="noopener">{{> icons/tiktok}}</a>
-                        {{/if}}
-                        {{#if youtube}}
-                            <a class="gh-author-youtube" href="{{social_url type="youtube"}}" target="_blank" rel="noopener">{{> icons/youtube}}</a>
-                        {{/if}}
-                        {{#if instagram}}
-                            <a class="gh-author-instagram" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">{{> icons/instagram}}</a>
-                        {{/if}}
-                        
-                    </div>
                 </div>
-            </header>
+
+                <div class="mt-6 flex flex-wrap items-center gap-4 text-neutral-500">
+                    {{#if twitter}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">{{> icons/twitter}}</a>
+                    {{/if}}
+                    {{#if facebook}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">{{> icons/facebook}}</a>
+                    {{/if}}
+                    {{#if linkedin}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">{{> icons/linkedin}}</a>
+                    {{/if}}
+                    {{#if bluesky}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="bluesky"}}" target="_blank" rel="noopener">{{> icons/bluesky}}</a>
+                    {{/if}}
+                    {{#if threads}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="threads"}}" target="_blank" rel="noopener">{{> icons/threads}}</a>
+                    {{/if}}
+                    {{#if mastodon}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="mastodon"}}" target="_blank" rel="noopener">{{> icons/mastodon}}</a>
+                    {{/if}}
+                    {{#if tiktok}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="tiktok"}}" target="_blank" rel="noopener">{{> icons/tiktok}}</a>
+                    {{/if}}
+                    {{#if youtube}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="youtube"}}" target="_blank" rel="noopener">{{> icons/youtube}}</a>
+                    {{/if}}
+                    {{#if instagram}}
+                        <a class="transition hover:text-[var(--color-primary-text)]" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">{{> icons/instagram}}</a>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="space-y-12">
+                {{#foreach posts}}
+                    {{> loop}}
+                {{/foreach}}
+            </div>
         </section>
     {{/author}}
-
-    <div class="gh-feed">
-        {{#foreach posts}}
-            {{> loop}}
-        {{/foreach}}
-    </div>
 
     <button class="gh-loadmore gh-btn">Load more issues</button>
 </main>
