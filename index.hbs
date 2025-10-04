@@ -4,16 +4,22 @@
     <div class="gh-inner">
         {{^is "paged"}}
             {{#foreach posts limit="1"}}
-                <article class="gh-hero {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}"{{#if feature_image}} style="background-image: url({{img_url feature_image size="xxl"}});"{{/if}}>
+                <article class="gh-hero {{post_class}}{{^if feature_image}} gh-hero--noimage{{/if}}">
                     <a class="gh-hero-link" href="{{url}}">
-                        <div class="gh-hero-content">
+                        {{#if feature_image}}
+                            <div class="gh-hero-image">
+                                <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                            </div>
+                        {{/if}}
+
+                        <div class="gh-hero-text">
                             <span class="gh-hero-meta">
                                 Latest Issue — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if reading_time}} · {{reading_time}}{{/if}}
                             </span>
 
                             <h1 class="gh-hero-title">{{title}}</h1>
 
-                            <p class="gh-hero-excerpt">{{excerpt words="36"}}</p>
+                            <p class="gh-hero-excerpt">{{excerpt words="30"}}</p>
                         </div>
                     </a>
                 </article>
