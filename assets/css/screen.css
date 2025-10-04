@@ -75,6 +75,14 @@ body {
     text-decoration: none;
 }
 
+.gh-hero-link,
+.gh-hero-link:visited,
+.gh-hero-link:hover,
+.gh-hero-link:focus,
+.gh-hero-link:active {
+    color: #f5f5f2;
+}
+
 .gh-hero-link:focus-visible {
     outline: 2px solid rgba(249, 249, 247, 0.8);
     outline-offset: 3px;
