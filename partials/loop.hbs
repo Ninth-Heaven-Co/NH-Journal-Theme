@@ -1,13 +1,34 @@
-<article class="gh-card {{post_class}}">
+<article class="gh-card gh-card-horizontal {{post_class}}">
     <a class="gh-card-link" href="{{url}}">
-        <header class="gh-card-header">
-            <h2 class="gh-card-title">{{title}}</h2>
-        </header>
+        {{#if feature_image}}
+            <figure class="gh-card-image">
+                <img
+                    src="{{img_url feature_image size="m"}}"
+                    srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w"
+                    sizes="(min-width: 1200px) 220px, (min-width: 768px) 220px, 100vw"
+                    alt="{{title}}"
+                    loading="lazy"
+                >
+            </figure>
+        {{/if}}
 
-        <div class="gh-card-excerpt">{{excerpt}}</div>
+        <div class="gh-card-content">
+            {{#if primary_tag}}
+                <span class="gh-card-tag">{{primary_tag.name}}</span>
+            {{/if}}
 
-        <footer class="gh-card-footer">
-            <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
-        </footer>
+            <header class="gh-card-header">
+                <h2 class="gh-card-title">{{title}}</h2>
+            </header>
+
+            <div class="gh-card-excerpt">{{excerpt words="36"}}</div>
+
+            <footer class="gh-card-meta">
+                <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                {{#if reading_time}}
+                    <span class="gh-card-duration">{{reading_time}}</span>
+                {{/if}}
+            </footer>
+        </div>
     </a>
 </article>
