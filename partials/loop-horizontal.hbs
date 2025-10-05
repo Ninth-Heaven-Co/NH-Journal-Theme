@@ -1,0 +1,33 @@
+<article class="gh-card gh-card-horizontal {{post_class}}">
+    <a class="gh-card-link" href="{{url}}">
+        {{#if feature_image}}
+            <figure class="gh-card-media">
+                <img
+                    src="{{img_url feature_image size="m"}}"
+                    srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w"
+                    sizes="(min-width: 1280px) 320px, (min-width: 768px) 280px, 100vw"
+                    alt="{{title}}"
+                    loading="lazy"
+                >
+            </figure>
+        {{/if}}
+
+        <div class="gh-card-content">
+            {{#if primary_tag}}
+                <span class="gh-card-tag">{{primary_tag.name}}</span>
+            {{/if}}
+
+            <h2 class="gh-card-title">{{title}}</h2>
+
+            <p class="gh-card-excerpt">{{excerpt words="36"}}</p>
+
+            <div class="gh-card-meta">
+                <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                {{#if reading_time}}
+                    <span class="gh-card-divider" aria-hidden="true">·</span>
+                    <span class="gh-card-duration">{{reading_time}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </a>
+</article>
