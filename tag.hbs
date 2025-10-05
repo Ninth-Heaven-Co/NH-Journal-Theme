@@ -1,27 +1,31 @@
 {{!< default}}
 
-<main class="gh-main gh-canvas">
-    {{#tag}}
-        <section class="gh-pagehead">
-            <header class="gh-pagehead-content">
-                <h1 class="gh-tag-name gh-pagehead-title">{{name}}</h1>
+<main id="gh-main" class="gh-main gh-canvas">
+    <div class="archive-layout">
+        <aside class="archive-sidebar fade-in">
+            {{#tag}}
+                {{#if feature_image}}
+                    <img class="sidebar-media" src="{{img_url feature_image size="m"}}" alt="{{name}}">
+                {{/if}}
 
-                <div class="gh-tag-description gh-pagehead-description">
-                    {{#if description}}
-                        {{description}}
-                    {{else}}
-                        A collection of {{plural ../pagination.total empty='zero issues' singular='% issue' plural='% issues'}}
-                    {{/if}}
-                </div>
-            </header>
-        </section>
+                <h1 class="sidebar-title">{{name}}</h1>
 
-        <div class="gh-feed">
-            {{#get "posts" filter="primary_tag:{{slug}}" limit="all"}}
+                {{#if description}}
+                    <p class="sidebar-description">{{description}}</p>
+                {{else}}
+                    <p class="sidebar-description">A collection of {{plural ../pagination.total empty="0 issues" singular="% issue" plural="% issues"}}</p>
+                {{/if}}
+            {{/tag}}
+        </aside>
+
+        <div class="archive-main">
+            <section class="post-list">
                 {{#foreach posts}}
-                    {{> loop}}
+                    {{> "loop-horizontal-no-badge"}}
                 {{/foreach}}
-            {{/get}}
+            </section>
+
+            <button class="gh-loadmore gh-btn">Load more issues</button>
         </div>
-    {{/tag}}
+    </div>
 </main>
