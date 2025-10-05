@@ -1,44 +1,68 @@
 {{!< default}}
 
-<main class="gh-main gh-canvas">
-    {{#author}}
-        <section class="gh-pagehead">
-            {{#if profile_image}}
-                <img class="gh-author-image gh-pagehead-image" src="{{profile_image}}" alt="{{name}}">
-            {{else}}
-                <span class="gh-author-icon">{{> icons/avatar}}</span>
-            {{/if}}
+<main id="gh-main" class="gh-main gh-canvas">
+    <div class="archive-layout">
+        <div class="archive-main">
+            <section class="post-list">
+                {{#foreach posts}}
+                    {{> "loop-horizontal-no-badge"}}
+                {{/foreach}}
+            </section>
 
-            <header class="gh-pagehead-content">
-                <h1 class="gh-author-name gh-pagehead-title">{{name}}</h1>
+            <button class="gh-loadmore gh-btn">Load more issues</button>
+        </div>
 
-                {{#if bio}}
-                    <div class="gh-author-bio gh-pagehead-description">{{bio}}</div>
+        <aside class="archive-sidebar fade-in">
+            {{#author}}
+                {{#if profile_image}}
+                    <img class="sidebar-avatar" src="{{img_url profile_image size="m"}}" alt="{{name}}">
+                {{else}}
+                    <span class="sidebar-avatar sidebar-avatar--placeholder" aria-hidden="true">{{> icons/avatar}}</span>
                 {{/if}}
 
-                <div class="gh-author-meta">
+                <h1 class="sidebar-title">{{name}}</h1>
+
+                {{#if bio}}
+                    <p class="sidebar-description">{{bio}}</p>
+                {{/if}}
+
+                <div class="sidebar-links">
                     {{#if location}}
-                        <span class="gh-author-location">📍 {{location}}</span>
+                        <span class="sidebar-link-item">{{location}}</span>
                     {{/if}}
                     {{#if website}}
-                        <a class="gh-author-website" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                        <a class="sidebar-link-item" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
                     {{/if}}
+
                     {{#if twitter}}
-                        <a class="gh-author-twitter" href="{{twitter_url}}" target="_blank" rel="noopener">{{> icons/twitter}}</a>
+                        <a class="sidebar-link-item" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">Twitter</a>
                     {{/if}}
                     {{#if facebook}}
-                        <a class="gh-author-facebook" href="{{facebook_url}}" target="_blank" rel="noopener">{{> icons/facebook}}</a>
+                        <a class="sidebar-link-item" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>
+                    {{/if}}
+                    {{#if instagram}}
+                        <a class="sidebar-link-item" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">Instagram</a>
+                    {{/if}}
+                    {{#if linkedin}}
+                        <a class="sidebar-link-item" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">LinkedIn</a>
+                    {{/if}}
+                    {{#if bluesky}}
+                        <a class="sidebar-link-item" href="{{social_url type="bluesky"}}" target="_blank" rel="noopener">Bluesky</a>
+                    {{/if}}
+                    {{#if mastodon}}
+                        <a class="sidebar-link-item" href="{{social_url type="mastodon"}}" target="_blank" rel="noopener">Mastodon</a>
+                    {{/if}}
+                    {{#if threads}}
+                        <a class="sidebar-link-item" href="{{social_url type="threads"}}" target="_blank" rel="noopener">Threads</a>
+                    {{/if}}
+                    {{#if tiktok}}
+                        <a class="sidebar-link-item" href="{{social_url type="tiktok"}}" target="_blank" rel="noopener">TikTok</a>
+                    {{/if}}
+                    {{#if youtube}}
+                        <a class="sidebar-link-item" href="{{social_url type="youtube"}}" target="_blank" rel="noopener">YouTube</a>
                     {{/if}}
                 </div>
-            </header>
-        </section>
-
-        <div class="gh-feed">
-            {{#get "posts" filter="primary_author:{{slug}}" limit="all"}}
-                {{#foreach posts}}
-                    {{> loop}}
-                {{/foreach}}
-            {{/get}}
-        </div>
-    {{/author}}
+            {{/author}}
+        </aside>
+    </div>
 </main>
