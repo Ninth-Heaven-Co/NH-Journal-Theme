@@ -1,27 +1,54 @@
 {{!< default}}
 
-<main class="gh-main gh-canvas">
+<main id="gh-main" class="gh-main gh-canvas">
     {{#tag}}
-        <section class="gh-pagehead">
-            <header class="gh-pagehead-content">
-                <h1 class="gh-tag-name gh-pagehead-title">{{name}}</h1>
+        <header class="tag-header fade-in">
+            <h1 class="tag-title">{{name}}</h1>
 
-                <div class="gh-tag-description gh-pagehead-description">
-                    {{#if description}}
-                        {{description}}
-                    {{else}}
-                        A collection of {{plural ../pagination.total empty='zero issues' singular='% issue' plural='% issues'}}
-                    {{/if}}
-                </div>
-            </header>
-        </section>
-
-        <div class="gh-feed">
-            {{#get "posts" filter="primary_tag:{{slug}}" limit="all"}}
-                {{#foreach posts}}
-                    {{> loop}}
-                {{/foreach}}
-            {{/get}}
-        </div>
+            {{#if description}}
+                <p class="tag-description">{{description}}</p>
+            {{else}}
+                <p class="tag-description">A collection of {{plural ../pagination.total empty="0 issues" singular="% issue" plural="% issues"}}</p>
+            {{/if}}
+        </header>
     {{/tag}}
+
+    <section class="tag-posts post-list">
+        {{#foreach posts}}
+            <article class="post-card fade-in {{post_class}}">
+                {{#if feature_image}}
+                    <a href="{{url}}" class="post-card-image-link">
+                        <img
+                            class="post-card-image"
+                            src="{{img_url feature_image size="m"}}"
+                            srcset="{{img_url feature_image size="s"}} 400w, {{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 960w"
+                            sizes="(min-width: 768px) 200px, 100vw"
+                            alt="{{title}}"
+                            loading="lazy"
+                        >
+                    </a>
+                {{else}}
+                    <div class="post-card-image post-card-image--placeholder" aria-hidden="true"></div>
+                {{/if}}
+
+                <div class="post-card-content">
+                    <h2 class="post-card-title"><a href="{{url}}">{{title}}</a></h2>
+
+                    {{#if excerpt}}
+                        <p class="post-card-excerpt">{{excerpt words="25"}}</p>
+                    {{/if}}
+
+                    <div class="post-card-meta">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                        {{#if reading_time}}
+                            <span aria-hidden="true"> · </span>
+                            <span>{{reading_time}}</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </article>
+        {{/foreach}}
+    </section>
+
+    <button class="gh-loadmore gh-btn">Load more issues</button>
 </main>
